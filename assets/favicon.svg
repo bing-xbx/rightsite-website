@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="9.00 13.81 62.38 62.38" role="img">
+  <style>
+    svg{--ink:#14171c;--eye:#f7ece6}
+    @media (prefers-color-scheme:dark){svg{--ink:#ffffff;--eye:#2a2f3a}}
+  </style>
+  <g transform="translate(11.63,24.76) scale(0.921)">
+    <path d="M2 26 C16 6 46 6 60 26 C46 46 16 46 2 26 Z" fill="var(--eye)" stroke="var(--ink)" stroke-width="3.2" stroke-linejoin="round"/>
+    <path d="M22 26 L29 33 L43 17" fill="none" stroke="#c6532b" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <g stroke="var(--ink)" stroke-width="2.9" stroke-linecap="round"><path d="M14.2 13.2 L11.3 7.4"/><path d="M31.0 9.3 L31.0 2.8"/><path d="M47.8 13.2 L50.7 7.4"/></g>
+  </g>
+</svg>

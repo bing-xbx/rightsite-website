@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Join those already ahead — RightSight</title>
+<meta name="description" content="Tell RightSight what you're sending out and we'll show you how real humans read it. Get an Attention Heatmap of your content, a $39.99 value, completely FREE." />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<style>
+  /* ── Shared chrome (vars, header, buttons, footer) is copied from index.html.
+        If you change the logo, the palette, or the nav here, change it there too. ── */
+  :root{
+    --bg:#f7f6f3; --paper:#ffffff; --ink:#14171c; --ink-2:#464c56; --muted:#7b828d;
+    --line:#e9e6e0; --accent:#c6532b; --accent-soft:#f7ece6; --blue:#2f5d86; --blue-soft:#eef3f8;
+    --logo-eye:#f7ece6;   /* inside of the logo's R bowl; overridden on dark surfaces */
+    --logo-brain:#c6532b; /* the brain in the bowl; lightened on dark surfaces */
+
+    --fs-h2: clamp(30px, 3.6vw, 44px);
+    --fs-lead: 19px;
+    --fs-body: 16px;
+    --fs-small: 13px;
+    --fs-kicker: 12px;
+
+    --maxw:1120px; --radius:16px;
+    --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:var(--fs-body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  h1,h2,h3,h4{letter-spacing:-.5px;line-height:1.15;font-weight:700;}
+
+  /* Header */
+  header{position:fixed;inset:0 0 auto 0;z-index:100;height:86px;background:rgba(247,246,243,.86);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s;}
+  header.scrolled{border-bottom:1px solid var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:86px;gap:20px;}
+  .brand svg{height:40px;width:auto;display:block;}
+  .nav-links{display:flex;align-items:center;gap:30px;}
+  .nav-links a{color:var(--ink-2);font-size:14.5px;font-weight:500;transition:color .2s;white-space:nowrap;}
+  .nav-links a:hover{color:var(--accent);}
+  .nav-back{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:13.5px;}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding:14px 26px;border-radius:999px;cursor:pointer;transition:all .22s;border:1px solid transparent;font-family:inherit;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(198,83,43,.28);}
+
+  /* The page is the CTA */
+  .cta{padding:166px 0 118px;position:relative;overflow:hidden;}
+  .cta::before{content:"";position:absolute;top:-160px;right:-140px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--blue-soft),transparent 70%);}
+  .cta-grid{position:relative;z-index:2;display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:start;}
+  .cta h1{font-size:var(--fs-h2);font-weight:800;margin-bottom:14px;}
+  .cta .cta-copy p{color:var(--ink-2);font-size:var(--fs-lead);max-width:440px;}
+  .cta .cta-copy p.note{font-size:12.5px;color:var(--muted);}
+  .form-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px 26px 24px;box-shadow:0 30px 60px -44px rgba(20,23,28,.3);}
+  .form-card .fc-head{font-size:var(--fs-small);font-weight:600;color:var(--ink);margin-bottom:4px;}
+  .form-card .fc-sub{font-size:12px;color:var(--muted);margin-bottom:20px;}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+  .field label{font-size:11.5px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);}
+  .field input,.field select,.field textarea{font-family:inherit;font-size:14px;color:var(--ink);background:#fbfaf8;border:1px solid var(--line);border-radius:10px;padding:11px 13px;transition:border-color .2s,background .2s;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:var(--paper);}
+  .field textarea{resize:vertical;min-height:92px;line-height:1.55;}
+  .form-card .btn{width:100%;justify-content:center;margin-top:6px;}
+  .form-foot{font-size:11.5px;color:var(--muted);margin-top:12px;line-height:1.5;}
+
+  /* Footer */
+  footer{background:var(--ink);color:rgba(255,255,255,.65);padding:44px 0;--logo-eye:#2a2f3a;--logo-brain:#e6a487;}
+  .foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+  .foot svg{height:32px;}
+  .foot-links{display:flex;gap:24px;font-size:14px;flex-wrap:wrap;}
+  .foot-links a:hover{color:#fff;}
+  .foot .copy{width:100%;font-size:var(--fs-small);color:rgba(255,255,255,.4);}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s;}
+  .reveal.in{opacity:1;transform:none;}
+
+  @media (max-width:940px){
+    .cta-grid{grid-template-columns:1fr;gap:44px;}
+    .nav-links a:not(.nav-back){display:none;}
+    .brand svg{height:31px;}
+  }
+  @media (max-width:520px){
+    .brand svg{height:24px;}
+    .nav{gap:12px;}
+    .wrap{padding:0 18px;}
+    .cta{padding:126px 0 84px;}
+    .frow{grid-template-columns:1fr;}
+  }
+  @media (max-width:380px){ .brand svg{height:21px;} }
+</style>
+</head>
+<body>
+
+<!-- Reusable logo — keep in sync with index.html -->
+<template id="logoTpl">
+  <svg viewBox="0 14 380 62" role="img" aria-label="RightSight">
+    <!-- the R: leg first so the bowl sits over its top, then the bowl, then the stem -->
+    <path d="M11 48.5 L30.4 57.3" fill="none" stroke="currentColor" stroke-width="5.4" stroke-linecap="round"/>
+    <circle cx="17.85" cy="35.15" r="13.35" fill="var(--logo-eye)" stroke="currentColor" stroke-width="5"/>
+    <rect x="2" y="19.3" width="5.4" height="40.7" fill="currentColor"/>
+    <!-- brain inside the bowl -->
+    <g transform="translate(8.25,25.95) scale(0.80)" fill="none" stroke="var(--logo-brain)" stroke-width="2.1"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+      <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+      <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/>
+    </g>
+    <text font-family="Inter, sans-serif" font-weight="700" letter-spacing="-1.3" x="37" y="60"
+          font-size="56" fill="currentColor">ight<tspan fill="#c6532b">Sight</tspan></text>
+  </svg>
+</template>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand" style="color:var(--ink)" aria-label="RightSight home"><span data-logo></span></a>
+    <nav class="nav-links">
+      <a href="index.html#what">What we can do</a>
+      <a href="index.html#different">How we're different</a>
+      <a href="index.html" class="nav-back">← Back to home</a>
+    </nav>
+  </div>
+</header>
+
+<section class="cta" id="connect">
+  <div class="wrap cta-grid">
+    <div class="cta-copy reveal">
+      <h1>Join the ones ahead.</h1>
+      <p>See what real humans are really doing with your content. Tell us what you're sending out and we'll show you the science.</p>
+      <p class="note" style="margin-top:22px;max-width:400px;">Most of the form is filled in already — change what doesn't fit, and send. We reply with what a session on your content would look like.</p>
+    </div>
+
+    <form class="form-card reveal" id="leadForm" novalidate>
+      <div class="fc-head">Get an Attention Heatmap of your content, a $39.99 value, completely FREE.</div>
+      <div class="fc-sub">Pre-filled to save you the typing. Takes about 30 seconds.</div>
+
+      <div class="frow">
+        <div class="field">
+          <label for="lfName">Your name</label>
+          <input id="lfName" name="name" type="text" placeholder="Jane Doe" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="lfEmail">Work email</label>
+          <input id="lfEmail" name="email" type="email" placeholder="jane@company.com" autocomplete="email" required />
+        </div>
+      </div>
+
+      <div class="frow">
+        <div class="field">
+          <label for="lfType">Content type</label>
+          <select id="lfType" name="type">
+            <option>Résumé or CV</option>
+            <option>Pitch deck</option>
+            <option>Marketing flyer</option>
+            <option selected>Landing page or website</option>
+            <option>Menu or price list</option>
+            <option>Ad or social creative</option>
+            <option>Other — described below</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="lfGoal">What you want to learn</label>
+          <select id="lfGoal" name="goal">
+            <option selected>Whether the key message is actually read</option>
+            <option>Which version performs better</option>
+            <option>Where human readers lose interest</option>
+            <option>Whether the call to action gets seen</option>
+            <option>Something else — described below</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="lfLink">Link to the content <span style="text-transform:none;font-weight:500;">(optional — you can attach it instead)</span></label>
+        <input id="lfLink" name="link" type="url" placeholder="https://…" />
+      </div>
+
+      <div class="field">
+        <label for="lfMsg">Anything else</label>
+        <textarea id="lfMsg" name="message">Hi RightSight — I'd like the free attention heat map. My content is attached or linked above. What matters most to me is knowing whether the part I care about is the part people actually notice, read, or act on.</textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Join the ones ahead →</button>
+      <p class="form-foot">Opens a pre-written email in your mail app so you can attach the file — nothing is sent from this page, and we never publish your content. Prefer plain email? <a href="mailto:rightsight@ontherightsight.com" style="color:var(--accent);font-weight:600;">rightsight@ontherightsight.com</a></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand" style="color:#fff" data-logo></span>
+    <div class="foot-links"><a href="index.html#what">What we can do</a><a href="index.html#different">How we're different</a><a href="index.html">Home</a></div>
+    <div class="copy">© <span id="year"></span> RightSight. Real intelligence, real science.<br>Boston, MA, USA</div>
+  </div>
+</footer>
+
+<script>
+  /* inline logo everywhere (inherits currentColor for the wordmark) */
+  const tpl = document.getElementById('logoTpl').content;
+  document.querySelectorAll('[data-logo]').forEach(slot => slot.appendChild(tpl.cloneNode(true)));
+
+  const header = document.getElementById('header');
+  addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 20));
+
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---- lead form → pre-written email (no backend on this page) ---- */
+  document.getElementById('leadForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const v = id => (document.getElementById(id).value || '').trim();
+    const email = v('lfEmail');
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById('lfEmail').focus();
+      return;
+    }
+    const body = [
+      'Name: ' + (v('lfName') || '(not given)'),
+      'Email: ' + email,
+      'Content type: ' + v('lfType'),
+      'What I want to learn: ' + v('lfGoal'),
+      'Link: ' + (v('lfLink') || '(attaching the file to this email instead)'),
+      '',
+      v('lfMsg')
+    ].join('\n');
+    location.href = 'mailto:rightsight@ontherightsight.com'
+      + '?subject=' + encodeURIComponent('Free attention heat map — ' + v('lfType'))
+      + '&body=' + encodeURIComponent(body);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
