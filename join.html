@@ -188,8 +188,8 @@
       </div>
 
       <button type="submit" class="btn btn-primary">Join the ones ahead →</button>
-      <p class="form-foot"><b>How it works:</b> this opens a pre-written email in your mail app — attach your file there and press Send. Nothing is sent from this page, and we never publish your content.</p>
-      <div class="form-alt" id="formAlt"><span id="formAltMsg">Email app didn't open, or you use webmail?</span> Send your file to <a href="mailto:rightsight@ontherightsight.com">rightsight@ontherightsight.com</a> <button type="button" class="copy-btn" id="copyEmail">Copy address</button></div>
+      <div class="form-alt" id="formAlt"><span id="formAltMsg">Clicking the button opens your mail app, where you can attach your file and send it to us. Alternatively, you can email your file directly to</span> <a href="mailto:rightsight@ontherightsight.com">rightsight@ontherightsight.com</a> <button type="button" class="copy-btn" id="copyEmail">Copy address</button></div>
+      <p class="form-foot">Your data security is our top priority. Nothing is sent directly from this page, and we never publish your content.</p>
     </form>
   </div>
 </section>
@@ -237,7 +237,7 @@
       + '?subject=' + encodeURIComponent('Free attention heat map — ' + v('lfType'))
       + '&body=' + encodeURIComponent(body);
     /* mailto can fail silently (webmail users, no mail app) — keep the fallback in view */
-    document.getElementById('formAltMsg').textContent = 'Your email app should be opening now. Didn’t open?';
+    document.getElementById('formAltMsg').textContent = 'Your mail app should be opening now — attach your file there and send it. Didn’t open? Email your file directly to';
     document.getElementById('formAlt').classList.add('flash');
   });
 
